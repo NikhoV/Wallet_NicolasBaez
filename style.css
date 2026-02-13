@@ -34,6 +34,24 @@ header {
     transition: background-color 0.4s ease;
 }
 
+a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.page {
+    display: none; /* Nascondi tutto di base */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.page.active {
+    display: block; /* Mostra solo la sezione attiva */
+    opacity: 1;
+    transform: translateY(0);
+}
+
 .line {
     background-color: var(--line-color);
 }

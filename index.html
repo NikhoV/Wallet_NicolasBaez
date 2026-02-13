@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <h1>BAEZ</h1>
+        <a href="#home"><h1>BAEZ</h1></a>
         <div id="header_button">
             <button id="theme-toggler"><i class="fa-solid fa-moon"></i></button>
             <a id="menu-button" class="hamburger-btn">
@@ -23,18 +23,27 @@
     <main>
         <div id="overlay" class="overlay"></div>
         <nav id="side-bar" class="side-bar">
-            <a href="portfolio.html">PORTAFOGLIO</a>
-            <a href="about.html">CHI SONO</a>
-            <a href="contatti.html">CONTATTI</a>
+            <a href="#portfolio">PORTAFOGLIO</a>
+            <a href="#about">CHI SONO</a>
+            <a href="#contatti">CONTATTI</a>
         </nav>
-        <section>
+        <section id="home" class="page active">
             <h2>Ciao, sono <strong>Nicolas Baez</strong>, ma puoi chiamarmi Niko</h2>
             <p>Sono un software engineer con una passione per la tecnologia e il design. Mi specializzo in sviluppo web full-stack</p>
             <div class="container_buttoms_main">
-                <a href="portfolio.html"><i class="fa-solid fa-arrow-right"></i> PORTAFOGLIO</a>
-                <a href="about.html"><i class="fa-solid fa-arrow-right"></i> CHI SONO</a>
-                <a href="contatti.html"><i class="fa-solid fa-arrow-right"></i> CONTATTI</a>
+                <a href="#portfolio"><i class="fa-solid fa-arrow-right"></i> PORTAFOGLIO</a>
+                <a href="#about"><i class="fa-solid fa-arrow-right"></i> CHI SONO</a>
+                <a href="#contatti"><i class="fa-solid fa-arrow-right"></i> CONTATTI</a>
             </div>
+        </section>
+        <section id="contatti" class="page">
+            <h2>Contatti</h2>
+            <p>Puoi contattarmi tramite email o sui miei profili social:</p>
+            <ul>
+                <li>Email: <a href="mailto:nicolas.baez@example.com">nicolas.baez@example.com</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/nicolas-baez" target="_blank">Nicolas Baez</a></li>
+                <li>GitHub: <a href="https://github.com/nicolasbaez" target="_blank">Nicolas Baez</a></li>
+            </ul>
         </section>
     </main>
     <script src="script.js"></script>
