@@ -363,6 +363,9 @@ h6 {
 
 /* Rimuoviamo i pallini dalla lista social */
 .social-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -370,4 +373,17 @@ h6 {
 
 .social-links li {
     margin-bottom: 10px;
+}
+
+.social-links i {
+    width: 20px; /* Allinea verticalmente le icone se hanno larghezze diverse */
+    margin-right: 10px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    transition: transform 0.3s ease;
+}
+
+.social-links li:hover i {
+    transform: scale(1.2); /* Effetto simpatico: l'icona si ingrandisce al passaggio del mouse */
+    color: var(--accent-color); /* Se hai definito un colore di accento */
 }
