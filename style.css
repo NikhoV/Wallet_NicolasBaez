@@ -274,3 +274,100 @@ main {
     opacity: 1;
     visibility: visible;
 }
+
+/* Questo è il contenitore che deve abbracciare entrambi i div */
+#contatti {
+    flex-direction: column; /* Titolo sopra, contenuto sotto */
+    align-items: center;    /* Centra tutto il blocco contatti */
+    width: 100%;
+    padding: 50px 5%;
+    padding-bottom: 120px;
+}
+
+/* Creiamo un wrapper per le due colonne info */
+.contact-wrapper {
+    display: flex;
+    justify-content: space-between; /* LA CHIAVE: spinge i figli ai due bordi */
+    width: 100%;                    /* Deve occupare tutta la larghezza */
+    max-width: 1200px;              /* Impedisce di diventare troppo largo su schermi giganti */
+    padding-top: 10px;
+}
+
+/* Stile per i tuoi div specifici */
+.lefttable, .rigthtable {
+    display: flex;
+    gap: 30px;            /* Spazio tra l'etichetta (EMAIL) e il valore (nicolas...) */
+    align-items: baseline;
+}
+
+/* Rendi le etichette (EMAIL/SOCIAL) belle evidenti come nel riferimento */
+h6 {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    min-width: 80px; /* Assicura che le scritte EMAIL e SOCIAL abbiano lo stesso spazio */
+}
+
+/* Titolo grande e sottile */
+.contact-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+/* La linea orizzontale che attraversa la pagina */
+.contact-line {
+    border: 0;
+    border-top: 1px solid var(--text-color);
+    opacity: 0.3;
+    margin-bottom: 30px;
+}
+
+/* Griglia per affiancare le info */
+.contact-grid {
+    display: flex;
+    justify-content: space-between; /* Spinge una a sinistra e una a destra */
+    gap: 50px;
+    flex-wrap: wrap; /* Fondamentale per il cellulare: le manda a capo */
+}
+
+.contact-item {
+    display: flex;
+    gap: 20px;
+    align-items: baseline;
+}
+
+/* Stile per le etichette (E-MAIL, SOCIAL) */
+.contact-item h6 {
+    font-size: 0.8rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    min-width: 100px; /* Allinea i contenuti */
+}
+
+/* Stile per i link */
+.contact-item a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-size: 1.1rem;
+    transition: opacity 0.3s;
+}
+
+.contact-item a:hover {
+    opacity: 0.6;
+}
+
+/* Rimuoviamo i pallini dalla lista social */
+.social-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-links li {
+    margin-bottom: 10px;
+}
