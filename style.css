@@ -103,6 +103,12 @@ main {
         background: white;
         width: 100%;
     }
+
+    .contact-item {
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
 }
 
 #header_button {
@@ -275,6 +281,8 @@ main {
     visibility: visible;
 }
 
+
+
 /* Questo è il contenitore che deve abbracciare entrambi i div */
 #contatti {
     flex-direction: column; /* Titolo sopra, contenuto sotto */
@@ -288,7 +296,8 @@ main {
 .contact-wrapper {
     display: flex;
     justify-content: space-between; /* LA CHIAVE: spinge i figli ai due bordi */
-    width: 100%;                    /* Deve occupare tutta la larghezza */
+    width: 100%;
+    flex-wrap: wrap;                    /* Deve occupare tutta la larghezza */
     max-width: 1200px;              /* Impedisce di diventare troppo largo su schermi giganti */
     padding-top: 10px;
 }
