@@ -109,6 +109,21 @@ main {
         align-items: center;
         margin-bottom: 10px;
     }
+
+    .about-title {
+        font-size: 48px;
+        margin: 40px auto 0 auto;
+        text-align: center;
+    }
+
+    #about p {
+        font-size: 1rem;
+        padding: 0 20px;
+    }
+
+    #about a {
+        margin: 20px auto;
+    }
 }
 
 #header_button {
