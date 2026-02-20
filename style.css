@@ -396,3 +396,34 @@ h6 {
     transform: scale(1.2); /* Effetto simpatico: l'icona si ingrandisce al passaggio del mouse */
     color: var(--accent-color); /* Se hai definito un colore di accento */
 }
+
+.about-title {
+    display: flex;
+    justify-self: start;
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+
+#about p{
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.2rem;
+    text-align: left;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+#about a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--accent-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}

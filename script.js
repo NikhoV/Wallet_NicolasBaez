@@ -30,7 +30,7 @@ navLinks.forEach(link => {
             // 3. Chiudi la sidebar e l'overlay (se erano aperti)
             sideBar.classList.remove('active');
             overlay.classList.remove('active');
-            menuBtn.classList.remove('active');
+            menuButton.classList.remove('active');
             
             // 4. Opzionale: scrolla verso l'alto
             window.scrollTo(0, 0);
