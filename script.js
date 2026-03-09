@@ -5,6 +5,8 @@ const langBtn = document.getElementById('language-toggler');
 const sideBar = document.getElementById('side-bar');
 const navLinks = document.querySelectorAll('a[href^="#"]'); // Prende tutti i link che iniziano con #
 const pages = document.querySelectorAll('.page');
+const projectContainer = document.querySelector('.projects-container');
+
 
 function showPage(pageId) {
     // Nascondi tutte le pagine
@@ -12,6 +14,33 @@ function showPage(pageId) {
     // Mostra quella selezionata
     document.getElementById(pageId).classList.add('active');
 }
+
+async function loadProjects() {
+    try {
+        const response = await fetch("assets/projects.json");
+        const projects = await response.json();
+
+        // Popola il container dei progetti
+        console.log(projects); // Verifica che i dati siano corretti
+        projectContainer.innerHTML = projects.map(project => `
+            <div class="project-card">
+                <h3>${project.title}</h3>
+                <p>${project.description}</p>
+                <div class="tech-tags">
+                    ${project.tech.map(tech => `<span class="tag">${tech}</span>`).join('')}
+                </div>
+                <div class="project-links">
+                    <a href="${project.github_url}" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="${project.live_demo}" target="_blank" rel="noopener noreferrer">Demo</a>
+                </div>
+            </div>
+        `).join('');
+    } catch (error) {
+        console.error('Errore nel caricamento dei progetti:', error);
+    }
+}
+
+loadProjects();
 
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {

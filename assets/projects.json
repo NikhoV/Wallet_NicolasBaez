@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "title": "Wallet Nicolas Baez",
+    "description": "Portfolio personale sviluppato con architettura SPA, gestione dinamica dei temi e multilingua interattivo.",
+    "tech": ["HTML5", "CSS3", "JavaScript"],
+    "github_url": "https://github.com/NikhoV/Wallet_NicolasBaez",
+    "live_demo": "https://nikhov.github.io/Wallet_NicolasBaez/",
+    "image": "none",
+    "featured": true
+  }
+]
