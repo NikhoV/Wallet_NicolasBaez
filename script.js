@@ -63,6 +63,11 @@ navLinks.forEach(link => {
             
             // 4. Opzionale: scrolla verso l'alto
             window.scrollTo(0, 0);
+
+            // 5. Cambia il titolo della pagina
+            const targetId = link.getAttribute('href').substring(1); 
+            const pageName = targetId.charAt(0).toUpperCase() + targetId.slice(1);
+            document.title = `Baez | ${pageName}`;
         }
     });
 });
