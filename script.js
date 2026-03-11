@@ -19,9 +19,6 @@ async function loadProjects() {
     try {
         const response = await fetch("assets/projects.json");
         const projects = await response.json();
-
-        // Popola il container dei progetti
-        console.log(projects); // Verifica che i dati siano corretti
         projectContainer.innerHTML = projects.map(project => `
             <div class="project-card">
                 <h3>${project.title}</h3>
