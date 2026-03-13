@@ -124,6 +124,12 @@ main {
     #about a {
         margin: 20px auto;
     }
+
+    .page {
+        /*allinea la pagina in alto per il mobile cosi tutti i titoli siamo alla stessa altezza non lasciando troppo spazio sopra */
+        align-items: flex-start;
+        padding-top: 20px; 
+    }
 }
 
 #header_button {
