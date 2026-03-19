@@ -8,5 +8,15 @@
     "live_demo": "https://nikhov.github.io/Wallet_NicolasBaez/",
     "image": "none",
     "featured": true
+  },
+  {
+    "id": 2,
+    "title": "Fintech App - Gestione Conti Bancari",
+    "description": "Applicazione full-stack per la gestione di conti bancari e movimenti finanziari. Realizzata con architettura moderna separando frontend e backend, implementa autenticazione JWT, gestione database relazionale e design system responsive con supporto dark mode automatico.",
+    "tech": ["React", "Node.js", "Express", "MySQL", "JWT", "Axios", "React Router", "CSS3 Variables"],
+    "github_url": "https://github.com/NikhoV/Fintech_App",
+    "live_demo": "none",
+    "image": "none",
+    "featured": true
   }
 ]
