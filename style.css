@@ -125,10 +125,11 @@ main {
         margin: 20px auto;
     }
 
-    .page {
+    main {
         /*allinea la pagina in alto per il mobile cosi tutti i titoli siamo alla stessa altezza non lasciando troppo spazio sopra */
+        margin: 0;
+        flex-direction: row;
         align-items: flex-start;
-        padding-top: 20px; 
     }
 }
 
