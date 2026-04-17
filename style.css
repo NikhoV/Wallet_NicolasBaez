@@ -113,11 +113,10 @@ main {
     .about-title {
         font-size: 48px;
         margin: 15px auto 0 auto;
-        text-align: center;
     }
 
     #about p {
-        font-size: 1rem;
+        font-size: 18px;
         padding: 0 20px;
     }
 
@@ -125,7 +124,7 @@ main {
         margin: 20px auto;
     }
 
-    main {
+    main:has(.page.active:not(#home)) {
         /*allinea la pagina in alto per il mobile cosi tutti i titoli siamo alla stessa altezza non lasciando troppo spazio sopra */
         margin: 0;
         flex-direction: row;
