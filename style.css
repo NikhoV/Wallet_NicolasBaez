@@ -111,8 +111,7 @@ main {
     }
 
     .about-title {
-        font-size: 48px;
-        margin: 15px auto 0 auto;
+        margin: 0 auto;
     }
 
     #about p {
@@ -306,20 +305,17 @@ main {
 
 /* Questo è il contenitore che deve abbracciare entrambi i div */
 #contatti {
-    flex-direction: column; /* Titolo sopra, contenuto sotto */
-    align-items: center;    /* Centra tutto il blocco contatti */
+    flex-direction: column; 
+    align-items: center;    
     width: 100%;
     padding: 50px 5%;
-    padding-bottom: 120px;
 }
 
-/* Creiamo un wrapper per le due colonne info */
 .contact-wrapper {
     display: flex;
-    justify-content: space-between; /* LA CHIAVE: spinge i figli ai due bordi */
+    justify-content: space-between; 
     width: 100%;
-    flex-wrap: wrap;                    /* Deve occupare tutta la larghezza */
-    max-width: 1200px;              /* Impedisce di diventare troppo largo su schermi giganti */
+    flex-wrap: wrap;                    
     padding-top: 10px;
 }
 
@@ -330,16 +326,14 @@ main {
     align-items: baseline;
 }
 
-/* Rendi le etichette (EMAIL/SOCIAL) belle evidenti come nel riferimento */
 h6 {
     font-size: 0.9rem;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
-    min-width: 80px; /* Assicura che le scritte EMAIL e SOCIAL abbiano lo stesso spazio */
+    min-width: 80px;
 }
 
-/* Titolo grande e sottile */
 .contact-title {
     font-size: 3rem;
     font-weight: 800;
@@ -348,7 +342,6 @@ h6 {
     text-transform: uppercase;
 }
 
-/* La linea orizzontale che attraversa la pagina */
 .contact-line {
     border: 0;
     border-top: 1px solid var(--text-color);
@@ -356,30 +349,28 @@ h6 {
     margin-bottom: 30px;
 }
 
-/* Griglia per affiancare le info */
 .contact-grid {
     display: flex;
-    justify-content: space-between; /* Spinge una a sinistra e una a destra */
+    justify-content: space-between; 
     gap: 50px;
-    flex-wrap: wrap; /* Fondamentale per il cellulare: le manda a capo */
+    flex-wrap: wrap; 
 }
 
 .contact-item {
     display: flex;
+    flex: 1 1 450px;
     gap: 20px;
     align-items: baseline;
 }
 
-/* Stile per le etichette (E-MAIL, SOCIAL) */
 .contact-item h6 {
     font-size: 0.8rem;
     font-weight: 900;
     letter-spacing: 2px;
     text-transform: uppercase;
-    min-width: 100px; /* Allinea i contenuti */
+    min-width: 100px; 
 }
 
-/* Stile per i link */
 .contact-item a {
     text-decoration: none;
     color: var(--text-color);
@@ -418,6 +409,10 @@ h6 {
     color: var(--accent-color); /* Se hai definito un colore di accento */
 }
 
+#about {
+    padding: 50px 5%;;
+}
+
 .about-title {
     display: flex;
     justify-self: start;
@@ -452,7 +447,7 @@ h6 {
 .portfolio-title {
     display: flex;
     justify-self: start;
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 800;
     letter-spacing: -2px;
     margin-bottom: 10px;
