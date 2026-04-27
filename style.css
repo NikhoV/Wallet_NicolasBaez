@@ -6,6 +6,8 @@
 
 :root {
     /* Palette Chiaro (Beige/Panna) */
+    --d: 700ms;
+    --e: cubic-bezier(0.19, 1, 0.22, 1);
     --bg-color: #F5F5DC;       /* Beige panna */
     --text-color: #2F2F2F;     /* Grigio antracite scuro */
     --header-bg: #8e8c85;      /* Panna più intenso */
@@ -89,6 +91,66 @@ main {
     text-align: center;
 }
 
+@keyframes fadeIn {
+from {
+    opacity: 0;
+}
+to {
+    opacity: 1;
+}
+}
+
+@keyframes slideDown {
+from {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+@keyframes slideUp {
+from {
+    opacity: 0;
+    transform: translateY(20px);
+}
+to {
+    opacity: 1;
+    transform: translateY(0);
+}
+}
+
+@keyframes scaleIn {
+from {
+    opacity: 0;
+    transform: scale(0.9);
+}
+to {
+    opacity: 1;
+    transform: scale(1);
+}
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.animate-slideDown {
+    animation: slideDown 0.8s ease-out;
+}
+
+.animate-slideUp {
+    animation: slideUp 0.8s ease-out;
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.6s ease-out;
+}
+
+.leading-relaxed { line-height: 1.625; }
+
 @media screen and (max-width: 768px) {
     .container_buttoms_main {
         display: none; /* Nasconde i link normali */
@@ -110,6 +172,11 @@ main {
         margin-bottom: 10px;
     }
 
+    .about_title_container{
+        flex-direction: column;
+        margin: 0 auto;
+    }
+
     .about-title {
         margin: 0 auto;
     }
@@ -128,6 +195,10 @@ main {
         margin: 0;
         flex-direction: row;
         align-items: flex-start;
+    }
+
+    .cv-button-group {
+        flex-direction: column;
     }
 }
 
@@ -413,6 +484,15 @@ h6 {
     padding: 50px 5%;;
 }
 
+.about-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    margin: 0 auto;
+    gap: 50px;
+}
+
 .about-title {
     display: flex;
     justify-self: start;
@@ -423,25 +503,106 @@ h6 {
     text-transform: uppercase;
 }
 
+.about-subtitle {
+    display: flex;
+    justify-self: start;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
 
 #about p{
-    max-width: 800px;
-    margin: 0 auto;
     font-size: 1.2rem;
     text-align: left;
     line-height: 1.6;
-    color: var(--text-color);
 }
 
 #about a {
     display: inline-block;
-    margin-top: 20px;
     padding: 10px 20px;
     background-color: var(--accent-color);
     color: white;
     text-decoration: none;
     border-radius: 5px;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+
+
+/* Container principale */
+.cv-section-container {
+    position: relative;
+    z-index: 10;
+    background-color: var(--header-bg);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.important-text {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.italic{
+    font-style: italic;
+}
+
+.cv-title {
+    margin-bottom: 1rem; /* mb-4 */
+    font-size: 1.5rem;
+}
+
+.cv-description {
+    margin-bottom: 1.5rem; /* mb-6 */
+    line-height: 1.625; /* leading-relaxed */
+    opacity: 0.9; /* opacity-90 */
+}
+
+/* Container dei bottoni con Flexbox Responsive */
+.cv-button-group {
+    display: flex;
+    gap: 1rem; /* gap-4 */
+}
+
+/* Stile base dei bottoni */
+.btn-download, .btn-contact {
+    padding: 1rem 2rem; /* px-8 py-4 */
+    border-radius: 0.5rem; /* rounded-lg */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease; /* transition duration-300 */
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-download {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+    border: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* shadow-lg */
+}
+
+/* Bottone "Vai ai Contatti" (Outline) */
+.btn-contact {
+    background-color: transparent;
+    border: 2px solid var(--accent-color); /* border-2 */
+    color: var(--accent-color);
+}
+
+.btn-contact:hover {
+    background-color: var(--accent-color);
+    color: var(--bg-color);
+}
+
+/* Testo finale */
+.cv-footer-text {
+    margin-top: 1.5rem; /* mt-6 */
+    opacity: 0.75; /* opacity-75 */
+    font-style: italic; /* italic */
 }
 
 .portfolio-title {
@@ -458,6 +619,182 @@ h6 {
     width: 100%;
     padding: 50px 5%;
     padding-bottom: 200px;
+}
+
+.hobby-container {
+    display: grid;
+    justify-self: center;   
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.hobby-card {  
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 1rem;
+    width: 100%;
+    height: 350px;
+    text-align: center;
+    color: whitesmoke;
+    border-radius: 1rem;
+    background-color: whitesmoke;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1), 
+        0 2px 2px rgba(0,0,0,0.1), 
+        0 4px 4px rgba(0,0,0,0.1), 
+        0 8px 8px rgba(0,0,0,0.1),
+        0 16px 16px rgba(0,0,0,0.1);
+}
+
+.hobby-card:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 110%;
+  background-size: cover;
+  background-position: 0 0;
+  transition: transform calc(var(--d) * 1.5) var(--e);
+  pointer-events: none;
+}
+
+.hobby-card:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200%;
+  pointer-events: none;
+  background-image: linear-gradient(
+    to bottom,
+    hsla(0, 0%, 0%, 0) 0%,
+    hsla(0, 0%, 0%, 0.009) 11.7%,
+    hsla(0, 0%, 0%, 0.034) 22.1%,
+    hsla(0, 0%, 0%, 0.072) 31.2%,
+    hsla(0, 0%, 0%, 0.123) 39.4%,
+    hsla(0, 0%, 0%, 0.182) 46.6%,
+    hsla(0, 0%, 0%, 0.249) 53.1%,
+    hsla(0, 0%, 0%, 0.320) 58.9%,
+    hsla(0, 0%, 0%, 0.394) 64.3%,
+    hsla(0, 0%, 0%, 0.468) 69.3%,
+    hsla(0, 0%, 0%, 0.540) 74.1%,
+    hsla(0, 0%, 0%, 0.607) 78.8%,
+    hsla(0, 0%, 0%, 0.668) 83.6%,
+    hsla(0, 0%, 0%, 0.721) 88.7%,
+    hsla(0, 0%, 0%, 0.762) 94.1%,
+    hsla(0, 0%, 0%, 0.790) 100%
+  );
+  transform: translateY(-50%);
+  transition: transform calc(var(--d) * 2) var(--e);
+}
+
+.hobby-card:nth-child(1):before {
+  background-image: url("assets/img/Niagara_falls.jpg");
+}
+.hobby-card:nth-child(2):before {
+  background-image: url("assets/img/milo.jpg");
+}
+.hobby-card:nth-child(3):before {
+  background-image: url("assets/img/urania.jpg");
+}
+.hobby-card:nth-child(4):before {
+  background-image: url("assets/img/The_office.jpg");
+  background-position: center;
+  background-size: 100px;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+  transition: transform var(--d) var(--e);
+  z-index: 1;
+}
+
+.content > * + * {
+  margin-top: 1rem;
+}
+
+.title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.copy {
+  font-family: var(--font-serif);
+  color: whitesmoke;
+  font-size: 1.125rem;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+/* Animazioni Hover per schermi Desktop */
+@media (hover: hover) and (min-width: 600px) {
+  
+  /* STATO INIZIALE: Spinge tutto il contenuto in basso, lasciando sbucare solo il titolo */
+  .content {
+    transform: translateY(calc(100% - 4.5rem)); 
+  }
+  
+  /* STATO INIZIALE: Rende invisibili e abbassa ulteriormente il paragrafo e il bottone */
+  .content > *:not(.title) {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      transform var(--d) var(--e),
+      opacity var(--d) var(--e);
+  }
+
+  /* --- INIZIO EFFETTI HOVER --- */
+
+  .hobby-card:hover,
+  .hobby-card:focus-within {
+    align-items: center;
+  }
+
+  /* HOVER: Leggero zoom dello sfondo */
+  .hobby-card:hover:before,
+  .hobby-card:focus-within:before { 
+    transform: translateY(-4%); 
+  }
+
+  /* HOVER: Scurisce il gradiente per far leggere meglio il testo */
+  .hobby-card:hover:after,
+  .hobby-card:focus-within:after { 
+    transform: translateY(-50%); 
+  }
+
+  /* HOVER: Riporta in alto tutto il blocco del contenuto */
+  .hobby-card:hover .content,
+  .hobby-card:focus-within .content {
+    transform: translateY(0);
+  }
+
+  /* HOVER: Fa apparire il testo e il bottone in dissolvenza */
+  .hobby-card:hover .content > *:not(.title),
+  .hobby-card:focus-within .content > *:not(.title) {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: calc(var(--d) / 8);
+  }
+  
+  /* Regola di accessibilità: toglie le transizioni se navighi con la tastiera (TAB) */
+  .hobby-card:focus-within:before,
+  .hobby-card:focus-within:after,
+  .hobby-card:focus-within .content,
+  .hobby-card:focus-within .content > *:not(.title) {
+    transition-duration: 0s;
+  }
 }
 
 .projects-container {
