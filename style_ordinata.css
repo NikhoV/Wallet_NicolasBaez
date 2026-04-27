@@ -1,0 +1,852 @@
+/* ============================================================
+   TABLE OF CONTENTS
+   1. Reset & Variables
+   2. Base & Typography
+   3. Layout (Body, Header, Main)
+   4. Navigation (Sidebar, Hamburger, Overlay)
+   5. Page Transitions
+   6. Page: Home
+   7. Page: About
+   8. Page: Contatti
+   9. Page: Portfolio
+   10. Animations
+   11. Utilities
+   12. Desktop Overrides (min-width: 768px)
+   13. Hover-only effects (hover: hover)
+============================================================ */
+
+
+/* ============================================================
+   1. RESET & VARIABLES
+============================================================ */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --d: 700ms;
+    --e: cubic-bezier(0.19, 1, 0.22, 1);
+
+    /* Light Theme */
+    --bg-color:     #F5F5DC;
+    --text-color:   #2F2F2F;
+    --header-bg:    #8e8c85;
+    --accent-color: #8B4513;
+    --line-color:   #2F2F2F;
+    --card-bg:      #e8e8cc;
+
+    /* Spacing */
+    --section-padding-x: 5%;
+    --section-padding-y: 40px;
+}
+
+body.dark-theme {
+    --bg-color:     #2F2F2F;
+    --text-color:   #E3D5CA;
+    --header-bg:    #1A1A1A;
+    --accent-color: #D4A373;
+    --line-color:   #E3D5CA;
+    --card-bg:      #3a3a3a;
+}
+
+
+/* ============================================================
+   2. BASE & TYPOGRAPHY
+============================================================ */
+body {
+    font-family: sans-serif;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.4s ease, color 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.leading-relaxed {
+    line-height: 1.7;
+}
+
+.important-text {
+    font-weight: 600;
+    color: var(--accent-color);
+}
+
+.italic {
+    font-style: italic;
+}
+
+
+/* ============================================================
+   3. LAYOUT — Body, Header, Main
+============================================================ */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px var(--section-padding-x);
+    background-color: var(--header-bg);
+    color: white;
+    transition: background-color 0.4s ease;
+}
+
+header h1 {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+    color: white;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+/* When a non-home page is active, align content to top */
+main:has(.page.active:not(#home)) {
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-align: left;
+}
+
+
+/* ============================================================
+   4. NAVIGATION — Header Buttons, Sidebar, Hamburger, Overlay
+============================================================ */
+
+/* --- Header Buttons --- */
+#header_button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+#header_button a,
+#header_button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 41px;
+    width: 41px;
+    background-color: transparent;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1rem;
+}
+
+#header_button a:hover,
+#header_button button:hover {
+    background-color: white;
+    color: #333;
+}
+
+/* --- Hamburger Button --- */
+.hamburger-btn {
+    width: 30px;
+    height: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1001; /* Sopra la sidebar */
+}
+
+.hamburger-btn:hover .line {
+    background-color: #333;
+}
+
+.line {
+    width: 100%;
+    height: 3px;
+    background-color: white; /* O il colore che preferisci */
+    transition: all 0.3s ease-in-out;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+/* Quando il menu è attivo, trasformiamo le linee */
+.hamburger-btn.active .line:nth-child(1) {
+    transform:  rotate(45deg) translate(3px,3px);
+}
+
+.hamburger-btn.active .line:nth-child(2) {
+    transform:  rotate(-45deg) translate(3px,-3px);
+}
+
+/* --- Sidebar --- */
+#side-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100%;
+    background: #1a1a1a;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease-in-out;
+    padding-top: 70px;
+}
+
+#side-bar.active {
+    transform: translateX(0);
+}
+
+#side-bar a {
+    display: block;
+    padding: 16px 24px;
+    color: white;
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    border-left: 3px solid transparent;
+    transition: border-color 0.3s, font-weight 0.3s, color 0.3s;
+}
+
+#side-bar a:hover {
+    font-weight: 700;
+    border-left-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+/* --- Overlay --- */
+#overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+    z-index: 999;
+}
+
+#overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ============================================================
+   5. PAGE TRANSITIONS
+============================================================ */
+.page {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    width: 100%;
+}
+
+.page.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ============================================================
+   6. PAGE: HOME
+============================================================ */
+#home {
+    padding: 40px var(--section-padding-x);
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    min-height: 60vh;
+    justify-content: center;
+}
+
+#home h2 {
+    font-size: clamp(1.6rem, 6vw, 3rem);
+    font-weight: 700;
+    line-height: 1.3;
+    max-width: 700px;
+}
+
+#home p {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    max-width: 550px;
+    opacity: 0.85;
+    line-height: 1.6;
+}
+
+/* --- Nav Links (desktop, hidden on mobile) --- */
+.container_buttoms_main {
+    display: none; /* Hidden by default on mobile */
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.container_buttoms_main a {
+    text-decoration: none;
+    padding: 12px 16px;
+    color: var(--text-color);
+    transition: transform 0.3s ease-in-out;
+    position: relative;
+    display: inline-block;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+}
+
+.container_buttoms_main a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease-in-out;
+}
+
+.container_buttoms_main a:hover::after {
+    width: 100%;
+}
+
+.container_buttoms_main a:hover {
+    transform: scale(1.05);
+}
+
+
+/* ============================================================
+   7. PAGE: ABOUT
+============================================================ */
+#about {
+    width: 100%;
+    padding: var(--section-padding-y) var(--section-padding-x);
+}
+
+.about-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
+
+.about-subtitle {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    font-weight: 700;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.about-container p {
+    font-size: clamp(1rem, 3vw, 1.15rem);
+    line-height: 1.7;
+    margin-bottom: 14px;
+}
+
+/* --- CV Section --- */
+.cv-section-container {
+    background-color: var(--card-bg);
+    padding: 24px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.cv-section-container h3 {
+    font-size: clamp(1.1rem, 3.5vw, 1.4rem);
+    font-weight: 700;
+}
+
+.cv-description {
+    line-height: 1.7;
+    opacity: 0.9;
+}
+
+.cv-button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.btn-download,
+.btn-contact {
+    padding: 14px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.btn-download {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn-download:hover {
+    opacity: 0.85;
+}
+
+.btn-contact {
+    background-color: transparent;
+    border: 2px solid var(--accent-color);
+    color: var(--accent-color);
+}
+
+.btn-contact:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+}
+
+.cv-footer-text {
+    font-style: italic;
+    opacity: 0.7;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+/* --- Hobby Cards (inside About) --- */
+.hobby-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.hobby-card {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    padding: 1rem;
+    width: 100%;
+    height: 220px;
+    color: whitesmoke;
+    border-radius: 12px;
+    background-color: #555;
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.15),
+        0 8px 16px rgba(0,0,0,0.1);
+}
+
+.hobby-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform calc(var(--d) * 1.5) var(--e);
+    pointer-events: none;
+}
+
+.hobby-card::after {
+    content: '';
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(
+        to bottom,
+        hsla(0, 0%, 0%, 0) 0%,
+        hsla(0, 0%, 0%, 0.6) 70%,
+        hsla(0, 0%, 0%, 0.85) 100%
+    );
+}
+
+.hobby-card:nth-child(1)::before { background-image: url("assets/img/Niagara_falls.jpg"); }
+.hobby-card:nth-child(2)::before { background-image: url("assets/img/milo.jpg"); }
+.hobby-card:nth-child(3)::before { background-image: url("assets/img/urania.jpg"); }
+.hobby-card:nth-child(4)::before {
+    background-image: url("assets/img/The_office.jpg");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
+    z-index: 1;
+    gap: 6px;
+}
+
+.content .title {
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.content .copy {
+    font-size: 0.85rem;
+    font-style: italic;
+    line-height: 1.4;
+    color: whitesmoke;
+    text-align: center;
+}
+
+
+/* ============================================================
+   8. PAGE: CONTATTI
+============================================================ */
+#contatti {
+    width: 100%;
+    padding: var(--section-padding-y) var(--section-padding-x);
+    flex-direction: column;
+}
+
+.contact-title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.contact-line {
+    border: 0;
+    border-top: 1px solid var(--text-color);
+    opacity: 0.3;
+    margin-bottom: 30px;
+}
+
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-item h6 {
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 0;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: var(--text-color);
+    transition: opacity 0.3s, color 0.3s;
+}
+
+.social-links a:hover {
+    opacity: 0.65;
+    color: var(--accent-color);
+}
+
+.social-links i {
+    width: 20px;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+    color: var(--text-color);
+}
+
+.social-links li:hover i {
+    transform: scale(1.2);
+    color: var(--accent-color);
+}
+
+
+/* ============================================================
+   9. PAGE: PORTFOLIO
+============================================================ */
+#portfolio {
+    width: 100%;
+    padding: var(--section-padding-y) var(--section-padding-x) 80px;
+}
+
+.portfolio-title {
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 24px;
+    width: 100%;
+}
+
+.project-card {
+    background: transparent;
+    border: 1px solid rgba(128, 128, 128, 0.3);
+    padding: 24px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    border-color: var(--text-color);
+    transform: translateY(-4px);
+    background: rgba(128, 128, 128, 0.05);
+}
+
+.project-card h3 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.project-card p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    line-height: 1.6;
+}
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.project-links a {
+    font-size: 0.85rem;
+    border: 1px solid var(--text-color);
+    border-radius: 3px;
+    padding: 6px 12px;
+    color: var(--text-color);
+    transition: all 0.3s;
+}
+
+.project-links a:hover {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    opacity: 1;
+}
+
+
+/* ============================================================
+   10. ANIMATIONS
+============================================================ */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fadeIn  { animation: fadeIn  0.8s ease-out; }
+.animate-slideDown { animation: slideDown 0.8s ease-out; }
+.animate-slideUp { animation: slideUp 0.8s ease-out; }
+.animate-scaleIn { animation: scaleIn 0.6s ease-out; }
+
+
+/* ============================================================
+   11. UTILITIES
+============================================================ */
+
+
+
+/* ============================================================
+   12. DESKTOP OVERRIDES (min-width: 768px)
+============================================================ */
+@media (min-width: 768px) {
+
+    /* Layout */
+    main:has(.page.active:not(#home)) {
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    /* Home nav links */
+    .container_buttoms_main {
+        display: flex;
+    }
+
+    /* About */
+    .cv-button-group {
+        flex-direction: row;
+    }
+
+    .btn-download,
+    .btn-contact {
+        width: auto;
+        padding: 14px 28px;
+    }
+
+    /* Hobby cards: 4 columns on desktop */
+    .hobby-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+
+    .hobby-card {
+        height: 320px;
+    }
+
+    /* Contatti: side by side */
+    .contact-wrapper {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 40px;
+    }
+
+    .contact-item {
+        flex-direction: row;
+        align-items: baseline;
+        gap: 20px;
+    }
+
+    .contact-item h6 {
+        min-width: 80px;
+    }
+
+    /* Portfolio: 2 columns */
+    .projects-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+
+/* ============================================================
+   13. HOVER-ONLY EFFECTS (Desktop with pointer)
+============================================================ */
+@media (hover: hover) and (min-width: 768px) {
+
+    .content {
+        transform: translateY(calc(100% - 4rem));
+        transition: transform var(--d) var(--e);
+    }
+
+    .content > *:not(.title) {
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+            transform var(--d) var(--e),
+            opacity var(--d) var(--e);
+    }
+
+    .hobby-card:hover,
+    .hobby-card:focus-within {
+        align-items: center;
+    }
+
+    .hobby-card:hover::before,
+    .hobby-card:focus-within::before {
+        transform: translateY(-4%);
+    }
+
+    .hobby-card:hover .content,
+    .hobby-card:focus-within .content {
+        transform: translateY(0);
+    }
+
+    .hobby-card:hover .content > *:not(.title),
+    .hobby-card:focus-within .content > *:not(.title) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: calc(var(--d) / 8);
+    }
+
+    .hobby-card:focus-within::before,
+    .hobby-card:focus-within::after,
+    .hobby-card:focus-within .content,
+    .hobby-card:focus-within .content > *:not(.title) {
+        transition-duration: 0s;
+    }
+}
