@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Baez | Home</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_ordinata.css">
     <link rel="icon" href="./assets/img/favicon-idea.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +23,9 @@
     </header>
     <main>
         <div id="overlay" class="overlay"></div>
+        <div id="floating" style="display: none; position: absolute;">
+        ⚠️ Funzione momentaneamente in manutenzione
+        </div>
         <nav id="side-bar" class="side-bar">
             <a href="#portfolio">PORTFOLIO</a>
             <a href="#about">CHI SONO</a>
@@ -143,7 +146,9 @@
             <div class="projects-container"></div>
         </section>
     </main>
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/core@1.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@floating-ui/dom@1.6.3"></script>
+    <script src="script.js" type="module"></script>
     <script src="https://kit.fontawesome.com/85c43843e4.js" crossorigin="anonymous"></script>
 </body>
 </html>

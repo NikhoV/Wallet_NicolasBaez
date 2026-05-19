@@ -110,9 +110,8 @@ header {
 }
 
 header h1 {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     letter-spacing: 2px;
-    color: white;
 }
 
 main {
@@ -267,7 +266,7 @@ main:has(.page.active:not(#home)) {
 }
 
 .page.active {
-    display: block;
+    display: flex;
     opacity: 1;
     transform: translateY(0);
 }
@@ -503,7 +502,6 @@ main:has(.page.active:not(#home)) {
 .hobby-card:nth-child(4)::before {
     background-image: url("assets/img/The_office.jpg");
     background-size: 100px;
-    background-repeat: no-repeat;
     background-position: center;
 }
 
@@ -619,6 +617,7 @@ main:has(.page.active:not(#home)) {
 #portfolio {
     width: 100%;
     padding: var(--section-padding-y) var(--section-padding-x) 80px;
+    flex-direction: column;
 }
 
 .portfolio-title {
@@ -738,8 +737,18 @@ main:has(.page.active:not(#home)) {
 /* ============================================================
    11. UTILITIES
 ============================================================ */
+#floating{
+    align-items: center;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+    border-radius: 10px;
+    height: 30px;
+    z-index: 2;
+}
 
-
+#btn-manutenzione{
+    cursor: not-allowed;
+}
 
 /* ============================================================
    12. DESKTOP OVERRIDES (min-width: 768px)

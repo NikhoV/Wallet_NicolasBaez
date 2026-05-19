@@ -1,3 +1,5 @@
+const { computePosition, shift, flip, offset } = FloatingUIDOM;
+
 const menuButton = document.getElementById('menu-button');
 const overlay = document.getElementById('overlay');
 const themeBtn = document.getElementById('theme-toggler');
@@ -6,6 +8,7 @@ const sideBar = document.getElementById('side-bar');
 const navLinks = document.querySelectorAll('a[href^="#"]'); // Prende tutti i link che iniziano con #
 const pages = document.querySelectorAll('.page');
 const projectContainer = document.querySelector('.projects-container');
+const floating = document.getElementById("floating");
 
 
 function showPage(pageId) {
@@ -28,10 +31,31 @@ async function loadProjects() {
                 </div>
                 <div class="project-links">
                     <a href="${project.github_url}" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a href="${project.live_demo}" target="_blank" rel="noopener noreferrer">Demo</a>
+                    <a "href"="${project.live_demo}" target="_blank" rel="noopener noreferrer" id="btn-manutenzione" disabled>Demo</a>
                 </div>
             </div>
         `).join('');
+        const buttons_man = document.querySelectorAll("#btn-manutenzione")
+        buttons_man.forEach(btn => {
+            btn.addEventListener("mouseenter", (e) => {
+                updatePosition(e.clientX, e.clientY);
+            });
+        });
+        buttons_man.forEach(btn => {
+            btn.addEventListener("mousemove", (e) => {
+                updatePosition(e.clientX, e.clientY);
+            });
+        });
+        buttons_man.forEach(btn => {
+            btn.addEventListener("mousemove", (e) => {
+                updatePosition(e.clientX, e.clientY);
+            });
+        });
+        buttons_man.forEach(btn => {
+            btn.addEventListener("mouseleave", () => {
+                floating.style.display = "none";
+            });
+        });
     } catch (error) {
         console.error('Errore nel caricamento dei progetti:', error);
     }
@@ -101,4 +125,33 @@ themeBtn.addEventListener('click', () => {
 // Carica preferenza tema
 if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark-theme');
+}
+
+// Funzione per aggiornare la posizione del tooltip rispetto al cursore
+function updatePosition(clientX, clientY) {
+  const virtualEl = {
+    getBoundingClientRect() {
+      return {
+        width: 0,
+        height: 0,
+        x: clientX,
+        y: clientY,
+        left: clientX,
+        right: clientX,
+        top: clientY,
+        bottom: clientY
+      };
+    }
+  };
+
+  computePosition(virtualEl, floating, {
+    placement: "right-start", // Puoi cambiarlo in "top", "bottom", ecc.
+    middleware: [offset(10), flip(), shift()]
+  }).then(({ x, y }) => {
+    Object.assign(floating.style, {
+      top: `${y}px`,
+      left: `${x}px`,
+      display: "flex" // Mostra il tooltip quando calcola la posizione
+    });
+  });
 }
