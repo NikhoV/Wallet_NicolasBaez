@@ -9,7 +9,13 @@ const navLinks = document.querySelectorAll('a[href^="#"]'); // Prende tutti i li
 const pages = document.querySelectorAll('.page');
 const projectContainer = document.querySelector('.projects-container');
 const floating = document.getElementById("floating");
+const themeMeta = document.getElementById("theme-meta");
+const rootStyles = getComputedStyle(document.documentElement);
+const headerColor = rootStyles.getPropertyValue('--header-color').trim();
 
+if (headerColor) {
+  themeMeta.setAttribute("content", headerColor);
+}
 
 function showPage(pageId) {
     // Nascondi tutte le pagine

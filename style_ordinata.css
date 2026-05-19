@@ -450,7 +450,7 @@ main:has(.page.active:not(#home)) {
 /* --- Hobby Cards (inside About) --- */
 .hobby-container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 16px;
     margin-top: 20px;
     width: 100%;
